@@ -1,0 +1,34 @@
+<div class="container">
+    <h2 class="my-3">Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <!--
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" name="email" formControlName="email" class="form-control">
+            <div *ngIf="email.touched && !email.valid" class="text-danger">
+                <small *ngIf="email.errors.required">Email required!</small>
+                <small *ngIf="email.errors.email">Email invalide</small>
+            </div>
+        </div>
+        -->
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" formControlName="username" class="form-control">
+            <div *ngIf="username?.touched && !username?.valid" class="text-danger">
+                <small *ngIf="username.errors.required">Username required</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" name="password" formControlName="password" class="form-control">
+            <div *ngIf="password.touched && !password.valid" class="text-danger">
+                <small *ngIf="password.errors.required">Password required</small>
+                <small *ngIf="password.errors.minlength">Password invalide</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+        </div>
+        <a [routerLink]="['/register']">Create account!</a>
+    </form>
+</div>

@@ -1,0 +1,57 @@
+<div class="container">
+  <h2 class="my-3">Register</h2>
+  <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-6 col-lg-6">
+          <label for="name">Name</label>
+          <input type="text" name="name" formControlName="name" placeholder="Your name..." class="form-control">
+          <div class="text-danger" *ngIf="!name.valid && name.touched">
+            <small *ngIf="name.errors.required">Name required</small>
+            <small *ngIf="name.errors.minlength">Name invalide</small>
+          </div>
+        </div>
+        <div class="col-xs-6 col-lg-6">
+          <label for="username">Username</label>
+          <input type="text" name="username" formControlName="username" class="form-control" placeholder="Your username...">
+          <div class="text-danger" *ngIf="!username.valid && username.touched">
+            <small *ngIf="username.errors.required">Username required</small>
+            <small *ngIf="username.errors.pattern">Username invalide</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" formControlName="email" class="form-control" placeholder="example@example.com">
+      <div class="text-danger" *ngIf="!email.valid && email.touched">
+        <small *ngIf="email.errors.required">Email required</small>
+        <small *ngIf="email.errors.email">Email invalide</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" formControlName="password" class="form-control">
+      <div class="text-danger" *ngIf="!password.valid && password.touched">
+        <small *ngIf="password.errors.required">Password required</small>
+        <small *ngIf="password.errors.pattern">Pattern!</small>
+        <small *ngIf="password.errors.minlength">Password invalide</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Role">Role</label>
+      <select name="role" formControlName="role" class="form-control">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+        <option value="pm">PM</option>
+      </select>
+      <div class="text-danger" *ngIf="!role.valid && role.touched">
+        <small *ngIf="role.errors.required">Role required</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+    </div>
+    <a [routerLink]="['/login']">Login!</a>
+  </form>
+</div>

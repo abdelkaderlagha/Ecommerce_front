@@ -1,0 +1,32 @@
+<div class="container">
+    <h2 class="my-3">Modifier le produit</h2>
+    <form class="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="nom">Nom du produit</label>
+            <input type="text" [(ngModel)]="produit.nom" name="nom" class="form-control">
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-6 col-lg-6">
+                    <label for="prixAchat">Prix d'achat</label>
+                    <input type="number" [(ngModel)]="produit.prixAchat" name="prixAchat" class="form-control">
+                </div>
+                <div class="col-xs-6 col-lg-6">
+                    <label for="prixAchat">Prix de vente</label>
+                    <input type="number" [(ngModel)]="produit.prixVente" name="prixVente" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="categorie">Catégorie</label>
+            <select [(ngModel)]="produit.categorie" name="categorie" class="form-control">
+                <option *ngFor="let categorie of categories" [ngValue]="categorie" class="form-control">
+                    {{categorie.nom}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Modifier</button>
+        </div>
+    </form>
+</div>

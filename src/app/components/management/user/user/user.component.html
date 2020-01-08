@@ -1,0 +1,34 @@
+<div class="container">
+    <h3 class="text-center">Liste des utilisateurs <span class="badge badge-primary">{{users?.length}}</span></h3>
+    <table class="table table-light">
+        <thead class="thead-light">
+            <tr>
+                <th>Nom</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Etat</th>
+                <th>Roles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td> {{user.name}} </td>
+                <td> {{user.username}} </td>
+                <td> {{user.email}} </td>
+                <td *ngIf="user.etat==0" class="text-danger"> Disabled </td>
+                <td *ngIf="user.etat==1" class="text-success"> Enabled </td>
+                <td>
+                    <div *ngFor="let role of user.roles">
+                        <span>{{role.name}}</span>
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-success mx-2" *ngIf="user.etat==0" (click)="status(user.id)">Enable</button>
+                    <button class="btn btn-warning mx-2" *ngIf="user.etat==1" (click)="status(user.id)">Disable</button>
+                    <button class="btn btn-danger" (click)="delete(user.id,user)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

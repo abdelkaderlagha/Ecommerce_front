@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand" href="#">E-COMMERCE</a>
+  
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a *ngIf="isLogged() && isActivated()" [routerLink]="['/management']" class="nav-link">Management</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="isLogged() && isAdmin() && isActivated()" [routerLink]="['/gerer-users']" class="nav-link">Gestion des utilisateurs</a>
+        </li>
+      </ul>
+      <div class="float-right">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a *ngIf="!isLogged()" [routerLink]="['/register']" class="nav-link">Register</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="!isLogged()" [routerLink]="['/login']" class="nav-link">Login</a>
+          </li>
+          <li class="nav-item">
+            <a *ngIf="isLogged()" class="nav-link" (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="row my-3">
+    <div class="col-xl-4 col-lg-5 col-sm-12 col-xs-12">
+      <h2 class="text-center">Liste des catégories <span class="badge badge-info">{{categories?.length}}</span></h2>
+      <button *ngIf="isAdmin" class="btn btn-primary btn-sm my-1" [routerLink]="['/ajouter-categorie']">Ajouter une catégorie</button>
+      <table class="table table-bordered text-center">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th *ngIf="isAdmin">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let categorie of categories">
+              <td>{{categorie.id}}</td>
+              <td>{{categorie.nom}}</td>
+              <td *ngIf="isAdmin">
+                <button class="btn btn-warning btn-sm mx-2" [routerLink]="['/modifier-categorie',categorie.id]">Modifier</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteCategorie(categorie)">Supprimer</button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xl-8 col-lg-7 col-sm-12 col-xs-12">
+      <h2 class="text-center">Liste des produits <span class="badge badge-info">{{produits?.length}}</span></h2>
+      <button *ngIf="isAdmin || isPm" class="btn btn-primary btn-sm my-1" [routerLink]="['/ajouter-produit/']">Ajouter un produit</button>
+      <table class="table table-bordered text-center">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix Achat</th>
+            <th scope="col">Prix Vente</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col" *ngIf="isAdmin || isPm">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produit of produits">
+              <td>{{produit.id}}</td>
+              <td>{{produit.nom}}</td>
+              <td>{{produit.prixAchat}} DT</td>
+              <td>{{produit.prixVente}} DT</td>
+              <td>{{produit.categorie.nom}}</td>
+              <td *ngIf="isAdmin || isPm">
+                <button class="btn btn-warning btn-sm mx-2" [routerLink]="['/modifier-produit',produit.id]">Modifier</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteProduit(produit)">Supprimer</button>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
